@@ -47,3 +47,50 @@ public class Main
       
     }
 }
+
+
+2nd method:-
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+  static boolean possible(int [] arr,int n, int m , int mid){
+       int fruit_count = 0;
+        for(int i= 0;i<n;i++){
+          int x=arr[i]-mid;
+          if(x>0){
+            fruit_count+=x;
+          }
+          if(fruit_count>=m){
+            return true;
+          }
+        }
+        return false;
+      }
+    public static void main (String[] args) throws java.lang.Exception
+    {
+      Scanner sc = new Scanner(System.in);
+      int n = sc.nextInt();
+      int m = sc.nextInt();
+      int [] arr = new int[n];
+      int max=0;
+      for(int i =0;i<n;i++){
+        arr[i] = sc.nextInt();
+        max=Math.max(max,arr[i]);
+      }
+      int start=0;int end=max;int ans=0;
+        while(start <= end)
+        {
+        int  mid = start + (end-start)/2;
+        if(possible(arr,n,m,mid)==true)  {
+          ans =Math.max(ans,mid);
+          start =mid+1;
+        } else{
+          end = mid-1;
+          }
+      }
+      System.out.println(ans);
+    }
+}
